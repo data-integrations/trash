@@ -20,7 +20,7 @@
 
   <groupId>co.cask</groupId>
   <artifactId>trash-plugin</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <name>Trash Sink</name>
   <packaging>jar</packaging>
   <description>Eats all input records.</description>
@@ -28,7 +28,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- properties for script build step that creates the config files for the artifacts -->
-    <app.parents>system:system:cdap-data-pipeline[4.1.0,4.2.0-SNAPSHOT),system:cdap-data-streams[4.1.0,4.2.0-SNAPSHOT)</app.parents>
+    <app.parents>system:system:cdap-data-pipeline[4.1.0,4.2.0),system:cdap-data-streams[4.1.0,4.2.0)</app.parents>
     <cdap.version>4.1.0</cdap.version>
     <hydrator.version>1.6.0</hydrator.version>
     <hadoop.version>2.3.0</hadoop.version>
