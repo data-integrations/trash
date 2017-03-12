@@ -27,7 +27,7 @@ import co.cask.cdap.etl.api.batch.BatchSinkContext;
 import co.cask.hydrator.common.ReferenceBatchSink;
 import co.cask.hydrator.common.ReferencePluginConfig;
 import org.apache.hadoop.io.NullWritable;
-import org.apache.hadoop.mapred.lib.NullOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.NullOutputFormat;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -41,6 +41,7 @@ public class Trash extends ReferenceBatchSink<StructuredRecord, NullWritable, Nu
 
   public Trash(ThrashConfig config) {
     super(config);
+    this.config = config;
   }
 
   /**
@@ -85,7 +86,7 @@ public class Trash extends ReferenceBatchSink<StructuredRecord, NullWritable, Nu
     }
   }
 
-  private class ThrashConfig extends ReferencePluginConfig {
+  public static class ThrashConfig extends ReferencePluginConfig {
     public ThrashConfig(String referenceName) {
       super(referenceName);
     }
