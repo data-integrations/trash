@@ -28,7 +28,8 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- properties for script build step that creates the config files for the artifacts -->
-    <app.parents>system:system:cdap-data-pipeline[4.1.0,4.2.0-SNAPSHOT),system:cdap-data-streams[4.1.0,4.2.0-SNAPSHOT)</app.parents>
+    <etl.versionRange>[4.0.0,10.0.0-SNAPSHOT)</etl.versionRange>
+    <app.parents>system:system:cdap-data-pipeline[4.1.0,4.2.0),system:cdap-data-streams[4.1.0,4.2.0)</app.parents>
     <cdap.version>4.1.0</cdap.version>
     <hydrator.version>1.6.0</hydrator.version>
     <hadoop.version>2.3.0</hadoop.version>
@@ -104,13 +105,11 @@
       <groupId>co.cask.cdap</groupId>
       <artifactId>cdap-formats</artifactId>
       <version>${cdap.version}</version>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>co.cask.hydrator</groupId>
       <artifactId>hydrator-common</artifactId>
       <version>${hydrator.version}</version>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>co.cask.cdap</groupId>

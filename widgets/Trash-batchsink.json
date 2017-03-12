@@ -4,7 +4,19 @@
   },
   "configuration-groups": [
     {
-      "label": "Trash Configuration (No configurations)"
+      "label": "Trash Configuration",
+      "properties": [
+        {
+          "widget-type" : "textbox",
+          "label" : "Reference Name",
+          "name" : "referenceName",
+          "description" : "Reference specifies the name to be used to track this external source",
+          "widget-attributes" : {
+            "default" : "Trash"
+          }
+
+        }
+      ]
     }
   ]
 }
