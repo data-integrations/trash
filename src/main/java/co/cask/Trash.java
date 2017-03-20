@@ -1,4 +1,4 @@
-package co.cask;/*
+/*
  * Copyright © 2017 Cask Data, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -13,6 +13,8 @@ package co.cask;/*
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+
+package co.cask;
 
 import co.cask.cdap.api.annotation.Description;
 import co.cask.cdap.api.annotation.Name;
