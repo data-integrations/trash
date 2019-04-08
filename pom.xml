@@ -18,9 +18,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>co.cask</groupId>
+  <groupId>io.cdap</groupId>
   <artifactId>trash-plugin</artifactId>
-  <version>1.1.1</version>
+  <version>1.2.0-SNAPSHOT</version>
   <name>Trash Sink</name>
   <packaging>jar</packaging>
   <description>Eats all input records.</description>
@@ -28,10 +28,10 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- properties for script build step that creates the config files for the artifacts -->
-    <etl.versionRange>[5.0.0,6.0.0-SNAPSHOT)</etl.versionRange>
-    <app.parents>system:system:cdap-data-pipeline[5.0.0,6.0.0-SNAPSHOT),system:cdap-data-streams[5.0.0,,6.0.0-SNAPSHOT)</app.parents>
-    <cdap.version>5.1.2</cdap.version>
-    <hydrator.version>2.1.0</hydrator.version>
+    <etl.versionRange>[6.0.0-SNAPSHOT,7.0.0-SNAPSHOT)</etl.versionRange>
+    <app.parents>system:system:cdap-data-pipeline[6.0.0-SNAPSHOT,7.0.0-SNAPSHOT),system:cdap-data-streams[6.0.0-SNAPSHOT,7.0.0-SNAPSHOT)</app.parents>
+    <cdap.version>6.0.0-SNAPSHOT</cdap.version>
+    <hydrator.version>2.2.0-SNAPSHOT</hydrator.version>
     <hadoop.version>2.3.0</hadoop.version>
     <junit.version>4.11</junit.version>
     <widgets.dir>widgets</widgets.dir>
@@ -41,10 +41,10 @@
 
   <developers>
     <developer>
-      <name>Cask Data</name>
-      <email>cask-dev@googlegroups.com</email>
-      <organization>Cask Data, Inc.</organization>
-      <organizationUrl>http://docs.cask.co/cdap</organizationUrl>
+      <name>CDAP</name>
+      <email>cdap-dev@googlegroups.com</email>
+      <organization>CDAP</organization>
+      <organizationUrl>http://docs.cdap.io/cdap</organizationUrl>
     </developer>
   </developers>
 
@@ -65,8 +65,8 @@
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
     <site>
-      <id>cask</id>
-      <url>http://cask.co</url>
+      <id>cdap</id>
+      <url>http://cdap.io</url>
     </site>
   </distributionManagement>
 
@@ -96,29 +96,29 @@
 
   <dependencies>
     <dependency>
-      <groupId>co.cask.cdap</groupId>
+      <groupId>io.cdap.cdap</groupId>
       <artifactId>cdap-etl-api</artifactId>
       <version>${cdap.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>co.cask.cdap</groupId>
+      <groupId>io.cdap.cdap</groupId>
       <artifactId>cdap-formats</artifactId>
       <version>${cdap.version}</version>
     </dependency>
     <dependency>
-      <groupId>co.cask.hydrator</groupId>
+      <groupId>io.cdap.plugin</groupId>
       <artifactId>hydrator-common</artifactId>
       <version>${hydrator.version}</version>
     </dependency>
     <dependency>
-      <groupId>co.cask.cdap</groupId>
+      <groupId>io.cdap.cdap</groupId>
       <artifactId>cdap-data-pipeline</artifactId>
       <version>${cdap.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>co.cask.cdap</groupId>
+      <groupId>io.cdap.cdap</groupId>
       <artifactId>hydrator-test</artifactId>
       <version>${cdap.version}</version>
       <scope>test</scope>
@@ -166,7 +166,7 @@
               <Embed-Transitive>true</Embed-Transitive>
               <Embed-Directory>lib</Embed-Directory>
               <!--Only @Plugin classes in the export packages will be included as plugin-->
-              <_exportcontents>co.cask.*</_exportcontents>
+              <_exportcontents>io.cdap.*</_exportcontents>
             </instructions>
           </configuration>
           <executions>
@@ -325,7 +325,7 @@
               </links>
               <doctitle>${project.table} ${project.version}</doctitle>
               <bottom>
-                <![CDATA[Copyright &#169; {currentYear} <a href="http://cask.co" target="_blank">Cask Data, Inc.</a> Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License, Version 2.0</a>.]]>
+                <![CDATA[Copyright &#169; {currentYear} <a href="http://cdap.io" target="_blank">CDAP</a> Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License, Version 2.0</a>.]]>
               </bottom>
             </configuration>
             <executions>
