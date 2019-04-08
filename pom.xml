@@ -20,7 +20,7 @@
 
   <groupId>io.cdap</groupId>
   <artifactId>trash-plugin</artifactId>
-  <version>1.2.0</version>
+  <version>1.3.0-SNAPSHOT</version>
   <name>Trash Sink</name>
   <packaging>jar</packaging>
   <description>Eats all input records.</description>
