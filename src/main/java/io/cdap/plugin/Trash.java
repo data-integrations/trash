@@ -22,6 +22,7 @@ import io.cdap.cdap.api.annotation.Plugin;
 import io.cdap.cdap.api.data.batch.Output;
 import io.cdap.cdap.api.data.batch.OutputFormatProvider;
 import io.cdap.cdap.api.data.format.StructuredRecord;
+import io.cdap.cdap.api.data.schema.Schema;
 import io.cdap.cdap.api.dataset.lib.KeyValue;
 import io.cdap.cdap.etl.api.Emitter;
 import io.cdap.cdap.etl.api.batch.BatchSink;
@@ -34,6 +35,7 @@ import org.apache.hadoop.mapreduce.lib.output.NullOutputFormat;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Plugin(type = BatchSink.PLUGIN_TYPE)
 @Name("Trash")
@@ -53,6 +55,13 @@ public class Trash extends ReferenceBatchSink<StructuredRecord, NullWritable, Nu
   @Override
   public void prepareRun(BatchSinkContext context) throws Exception {
     context.addOutput(Output.of(config.referenceName, new ThrashOutputFormatProvider()));
+
+    Schema schema = context.getInputSchema();
+    if (schema != null && schema.getFields() != null) {
+      recordLineage(context, config.referenceName, schema,
+                    schema.getFields().stream().map(Schema.Field::getName).collect(Collectors.toList()),
+                    "Write", "Wrote to Trash.");
+    }
   }
 
   /**
