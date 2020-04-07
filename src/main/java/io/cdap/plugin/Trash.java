@@ -35,7 +35,6 @@ import org.apache.hadoop.mapreduce.lib.output.NullOutputFormat;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Plugin(type = BatchSink.PLUGIN_TYPE)
 @Name("Trash")
@@ -58,9 +57,7 @@ public class Trash extends ReferenceBatchSink<StructuredRecord, NullWritable, Nu
 
     Schema schema = context.getInputSchema();
     if (schema != null && schema.getFields() != null) {
-      recordLineage(context, config.referenceName, schema,
-                    schema.getFields().stream().map(Schema.Field::getName).collect(Collectors.toList()),
-                    "Write", "Wrote to Trash.");
+      recordLineage(context, config.referenceName, schema, "Write", "Wrote to Trash.");
     }
   }
 
