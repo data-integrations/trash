@@ -1,0 +1,284 @@
+{
+  "metadata": {
+    "spec-version": "1.5"
+  },
+  "display-name": "Oracle by DataStream",
+  "configuration-groups": [
+    {
+      "label": "Existing or New stream",
+      "properties": [
+        {
+          "name": "usingExistingStream",
+          "widget-type": "toggle",
+          "label": "Use an existing Datastream stream",
+          "widget-attributes": {
+            "default": "false",
+            "on": {
+              "value": "true",
+              "label": "Yes"
+            },
+            "off": {
+              "value": "false",
+              "label": "No"
+            }
+          }
+        },
+        {
+          "name": "region",
+          "label": "Region",
+          "widget-type": "textbox",
+          "widget-attributes": {
+            "default": "us-central1"
+          }
+        },
+        {
+          "name": "streamId",
+          "label": "Datastream stream identity",
+          "widget-type": "textbox"
+        }
+      ]
+    },
+    {
+      "label": "Database Locations",
+      "properties": [
+        {
+          "name": "host",
+          "label": "Host",
+          "widget-type": "textbox"
+        },
+        {
+          "name": "port",
+          "label": "Port",
+          "widget-type": "textbox",
+          "widget-attributes": {
+            "default": "1521"
+          }
+        },
+        {
+          "name": "sid",
+          "label": "System Identifier (SID)",
+          "widget-type": "textbox",
+          "widget-attributes": {
+            "default": "ORCL"
+          }
+        }
+      ]
+    },
+    {
+      "label": "Credentials",
+      "properties": [
+        {
+          "name": "user",
+          "label": "User",
+          "widget-type": "textbox"
+        },
+        {
+          "name": "password",
+          "label": "Password",
+          "widget-type": "password"
+        }
+      ]
+    },
+    {
+      "label": "DataStream Configuration",
+      "properties": [
+        {
+          "label": "Connectivity Method",
+          "name": "connectivityMethod",
+          "widget-type": "radio-group",
+          "widget-attributes": {
+            "layout": "inline",
+            "default": "ip-allowlisting",
+            "options": [
+              {
+                "id": "ip-allowlisting",
+                "label": "IP allowlisting"
+              },
+              {
+                "id": "forward-ssh-tunnel",
+                "label": "Forward SSH Tunnel"
+              }
+            ]
+          }
+        },
+        {
+          "name": "sshHost",
+          "label": "Host",
+          "widget-type": "textbox"
+        },
+        {
+          "name": "sshPort",
+          "label": "Port",
+          "widget-type": "textbox",
+          "widget-attributes": {
+            "default": "22"
+          }
+        },
+        {
+          "name": "sshAuthenticationMethod",
+          "label": "Authentication Method",
+          "widget-type": "radio-group",
+          "widget-attributes": {
+            "layout": "inline",
+            "default": "private-public-key",
+            "options": [
+              {
+                "id": "private-public-key",
+                "label": "Private/Public Key Pair"
+              },
+              {
+                "id": "password",
+                "label": "Password"
+              }
+            ]
+          }
+        },
+        {
+          "name": "sshUser",
+          "label": "Username",
+          "widget-type": "textbox"
+        },
+        {
+          "name": "sshPassword",
+          "label": "Password",
+          "widget-type": "password"
+        },
+        {
+          "name": "sshPrivateKey",
+          "label": "Private Key",
+          "widget-type": "securekey-textarea"
+        }
+      ]
+    },
+    {
+      "label": "Advanced",
+      "properties": [
+        {
+          "name": "gcsBucket",
+          "label": "GCS Bucket",
+          "widget-type": "textbox"
+        },
+        {
+          "name": "gcsPathPrefix",
+          "label": "Path Prefix",
+          "widget-type": "textbox"
+        },
+        {
+          "name": "gcsServiceAccountKey",
+          "label": "GCS Service Account Key",
+          "widget-type": "securekey-textarea",
+          "widget-attributes": {
+            "default": "auto-detect"
+          }
+        },
+        {
+          "name": "dsServiceAccountKey",
+          "label": "Datastream Service Account Key",
+          "widget-type": "securekey-textarea",
+          "widget-attributes": {
+            "default": "auto-detect"
+          }
+        },
+        {
+          "name": "project",
+          "label": "Project ID",
+          "widget-type": "textbox",
+          "widget-attributes": {
+            "default": "auto-detect"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": [],
+  "filters": [
+    {
+      "name": "showExistingStream",
+      "condition": {
+        "expression": "usingExistingStream == true"
+      },
+      "show": [
+        {
+          "type": "property",
+          "name": "streamId"
+        }
+      ]
+    },
+    {
+      "name": "showNewStream",
+      "condition": {
+        "expression": "usingExistingStream == false"
+      },
+      "show": [
+        {
+          "type": "group",
+          "name": "Database Locations"
+        },
+        {
+          "type": "property",
+          "name": "gcsPathPrefix"
+        },
+        {
+          "type": "group",
+          "name": "DataStream Configuration"
+        },
+        {
+          "type": "group",
+          "name": "Credentials"
+        },
+        {
+          "type": "property",
+          "name": "gcsBucket"
+        }
+      ]
+    },
+    {
+      "name": "showSSH",
+      "condition": {
+        "expression": "connectivityMethod == 'forward-ssh-tunnel'"
+      },
+      "show": [
+        {
+          "type": "property",
+          "name": "sshHost"
+        },
+        {
+          "type": "property",
+          "name": "sshPort"
+        },
+        {
+          "type": "property",
+          "name": "sshAuthenticationMethod"
+        },
+        {
+          "type": "property",
+          "name": "sshUser"
+        }
+      ]
+    },
+    {
+      "name": "showSSHPassword",
+      "condition": {
+        "expression": "sshAuthenticationMethod == 'password' && connectivityMethod == 'forward-ssh-tunnel'"
+      },
+      "show": [
+        {
+          "type": "property",
+          "name": "sshPassword"
+        }
+      ]
+    },
+    {
+      "name": "showSSHPrivateKey",
+      "condition": {
+        "expression": "sshAuthenticationMethod == 'private-public-key' && connectivityMethod == 'forward-ssh-tunnel'"
+      },
+      "show": [
+        {
+          "type": "property",
+          "name": "sshPrivateKey"
+        }
+      ]
+    }
+  ]
+}
