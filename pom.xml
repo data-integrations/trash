@@ -32,7 +32,7 @@
     <app.parents>system:system:cdap-data-pipeline[6.0.0-SNAPSHOT,7.0.0-SNAPSHOT),system:cdap-data-streams[6.0.0-SNAPSHOT,7.0.0-SNAPSHOT)</app.parents>
     <cdap.version>6.2.0-SNAPSHOT</cdap.version>
     <hydrator.version>2.4.0-SNAPSHOT</hydrator.version>
-    <hadoop.version>2.3.0</hadoop.version>
+    <hadoop.version>3.2.3</hadoop.version>
     <junit.version>4.11</junit.version>
     <widgets.dir>widgets</widgets.dir>
     <docs.dir>docs</docs.dir>
